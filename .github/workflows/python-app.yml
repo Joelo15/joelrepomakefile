@@ -44,5 +44,7 @@ jobs:
     - name: 🏗️ Build and push Docker image
       uses: docker/build-push-action@v6
       with:
+        context: ./stack
+        file: ./stack/Dockerfile
         push: true
         tags: ghcr.io/joelo15/joelrepomakefile:latest
