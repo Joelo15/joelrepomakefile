@@ -90,5 +90,5 @@ jobs:
           cd ~/deploy1/stack
 
           echo "Descargando la imagen del git"
-          echo "${{ secrects.GHCR_TOKEN }}" | docker login ghcr.io -u joelo15 --password-stdin
+          echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u joelo15 --password-stdin
           docker pull ghcr.io/joelo15/joelrepomakefile:latest
