@@ -2,8 +2,8 @@ version: "3.8"
 
 services:
   pgjoelo:
-    image: pgjoelo:latest
-    build: .
+    image: ghcr.io/joelo15/joelrepomakefile:latest
+    
     deploy:
       replicas: 1
       labels:
@@ -25,3 +25,4 @@ services:
 networks:
   traefik-public:
     external: true
+
