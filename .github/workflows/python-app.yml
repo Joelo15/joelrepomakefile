@@ -78,3 +78,17 @@ jobs:
         port: ${{ secrets.VPS_SSH_PORT }}
         source: "stack/stack.yml"  # Actualiza la ruta al archivo dentro de la carpeta stack
         target: "/home/${{ secrets.VPS_USER }}/deploy1"
+    - name: Despliegue de servicios
+      uses: appleboy/ssh-action@v1
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USER }}
+        password: ${{ secrets.VPS_PASSWORD }}
+        port: ${{ secrets.VPS_SSH_PORT }}
+        script: | 
+          echo: "Desplegando servicios"
+          cd ~/deploy1/stack
+
+          echo "Descargando la imagen del git"
+          echo "${{ secrects.GHCR_TOKEN }}" | docker login ghcr.io -u joelo15 --password-stdin
+          docker pull ghcr.io/joelo15/joelrepomakefile:latest
