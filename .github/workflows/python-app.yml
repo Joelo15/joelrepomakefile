@@ -92,3 +92,13 @@ jobs:
           echo "Descargando la imagen del git"
           echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u joelo15 --password-stdin
           docker pull ghcr.io/joelo15/joelrepomakefile:latest
+          echo "Deteniendo los servicios (stack)"
+          docker stack rm pgjoelo    || true
+
+          echo "Esperar 20 segundos....."
+          sleep 20
+
+          echo "Desplegando el stack o servicios"
+          docker stack deploy -c stack.yml pgjoelo
+
+          docker ps
